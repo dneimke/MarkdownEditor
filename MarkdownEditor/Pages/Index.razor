@@ -1,6 +1,14 @@
 ﻿@page "/"
 
-<h1>Journal</h1>
+<h1>Markdown Editor</h1>
 
+<textarea class="editor p-2 mb-4"
+          @bind="CurrentText" @bind:event="oninput"> </textarea>
 
+<MarkdownPreview Text="@CurrentText"></MarkdownPreview>
 
+@code {
+
+    private string CurrentText = $"# Welcome to your new Markdown editor!\n\n" +
+            $"As you enter text, the preview will update. 😎";
+}

@@ -1,0 +1,24 @@
+﻿@inject HeyRed.MarkdownSharp.Markdown _markdown
+
+<pre class="preview">@HtmlContent</pre>
+
+@code {
+
+    [Parameter]
+    public string Text
+    {
+        get => _text;
+        set
+        {
+            _text = value;
+            HtmlContent = TransformText(_text);
+        }
+    }
+
+    private string _text;
+    public MarkupString HtmlContent { get; private set; }
+
+    // Note: this string should be sanitized to avoid XSS attacks in a real-world application
+    // using something like https://github.com/mganss/HtmlSanitizer
+    MarkupString TransformText(string text) => new MarkupString(_markdown.Transform(text));
+}
