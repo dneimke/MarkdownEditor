@@ -22,11 +22,11 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Publish 📘
-        run: dotnet publish --configuration Release -o ${{env.DOTNET_ROOT}}/release --no-build --nologo
+        run: dotnet publish --configuration Release -o
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: /home/runner/work/MarkdownEditor/MarkdownEditor/MarkdownEditor/bin/Release/net5.0/wwwroot
+          FOLDER: MarkdownEditor/bin/Release/net5.0/wwwroot
