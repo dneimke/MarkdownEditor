@@ -7,23 +7,27 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@master
+
+      - name: Install rsync 📚
+        run: |
+          apt-get update && apt-get install -y rsync
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "5.0.x"
 
-      - name: Build with dotnet
+      - name: Build 👷‍♂️
         run: dotnet build --configuration Release
 
-      - name: dotnet publish
+      - name: Publish 📘
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/release --nologo
 
-      - name: Publish to GitHub pages
+      - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
