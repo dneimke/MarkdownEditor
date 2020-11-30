@@ -6,7 +6,8 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -21,11 +22,17 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Publish 📘
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/release --nologo
+        run: dotnet publish --configuration Release -o ${{env.DOTNET_ROOT}}/release --no-build --nologo
 
+  deploy:
+    needs: build
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: ${{env.DOTNET_ROOT}}/release/net5.0/wwwroot
+          FOLDER: /home/runner/work/MarkdownEditor/MarkdownEditor/MarkdownEditor/bin/Release/net5.0/wwwroot
