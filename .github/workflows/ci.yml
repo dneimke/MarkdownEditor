@@ -35,7 +35,7 @@ jobs:
       - name: Rewrite base href
         uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
         with:
-          html_path: ${{ env.PUBLISH_DIR }}/index.html
+          html_path: ./MarkdownEditor/bin/Release/net5.0/wwwroot/index.html
           base_href: /MarkdownEditor/
 
       - name: Deploy 🚀
