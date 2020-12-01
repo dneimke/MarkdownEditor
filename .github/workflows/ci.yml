@@ -26,8 +26,8 @@ jobs:
       - name: copy file
         uses: canastro/copy-file-action@master
         with:
-          source: "${{ GITHUB_WORKSPACE }}/MarkdownEditor/obj/Release/net5.0/scopedcss/bundle/MarkdownEditor.styles.css"
-          target: "${{ GITHUB_WORKSPACE }}/MarkdownEditor/bin/Release/net5.0/wwwroot/MarkdownEditor.styles.css"
+          source: "$GITHUB_WORKSPACE/MarkdownEditor/obj/Release/net5.0/scopedcss/bundle/MarkdownEditor.styles.css"
+          target: "$GITHUB_WORKSPACE/MarkdownEditor/bin/Release/net5.0/wwwroot/MarkdownEditor.styles.css"
 
       - name: Publish 📘
         run: dotnet publish --configuration Release -o ${{env.DOTNET_ROOT}}/release --no-build --nologo
