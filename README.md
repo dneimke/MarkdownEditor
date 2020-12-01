@@ -12,3 +12,5 @@ A sample Blazor WebAssembly project that demonstrates how to:
 Here is a screenshot of the application.
 
 ![Markdown Editor screenshot](https://github.com/dneimke/markdowneditor/blob/main/images/editor-screenshot.png?raw=true)
+
+The application is hosted on [GitHub pages](https://dneimke.github.io/MarkdownEditor/) so click the link and give it a try! 😉
