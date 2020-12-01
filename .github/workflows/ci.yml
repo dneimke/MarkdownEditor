@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
+      
+      - run: echo $GITHUB_WORKSPACE
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
@@ -20,6 +22,12 @@ jobs:
 
       - name: Build 👷‍♂️
         run: dotnet build --configuration Release
+      
+      - name: copy file
+        uses: canastro/copy-file-action@master
+        with:
+          source: "./MarkdownEditor/obj/Release/net5.0/scopedcss/bundle/MarkdownEditor.styles.css"
+          target: "./MarkdownEditor/bin/Release/net5.0/wwwroot/MarkdownEditor.styles.css"
 
       - name: Publish 📘
         run: dotnet publish --configuration Release -o ${{env.DOTNET_ROOT}}/release --no-build --nologo
